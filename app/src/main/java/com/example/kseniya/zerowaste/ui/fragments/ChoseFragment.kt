@@ -29,6 +29,7 @@ class ChoseFragment : BaseFragment(), View.OnClickListener {
     private fun switchFragment() {
         val fragmentManager = fragmentManager
         val fragmentTransaction = fragmentManager!!.beginTransaction()
+        fragmentTransaction.setCustomAnimations(R.transition.enter_from_left,  R.transition.exit_to_right)
         fragmentTransaction.replace(R.id.container, PointsInfoFragment())
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()

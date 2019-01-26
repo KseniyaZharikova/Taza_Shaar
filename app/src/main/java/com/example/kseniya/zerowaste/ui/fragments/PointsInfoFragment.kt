@@ -85,6 +85,7 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
         // DishListActivity.new(this, points.id, cafe.title)
         val fragmentManager = fragmentManager
         val fragmentTransaction = fragmentManager!!.beginTransaction()
+        fragmentTransaction.setCustomAnimations(R.transition.enter_from_left,  R.transition.exit_to_right)
         fragmentTransaction.replace(R.id.container, InfoFragment.newInstance(point))
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
