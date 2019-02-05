@@ -29,6 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private final static String LATITUDE = "LATITUDE";
     private final static String LONGTITUDE = "LONGTITUDE";
     private final static String PHONE = "PHONE";
+    private final static String DESCRIPTION = "DESCRIPTION";
 
     private final static String TABLE_CREATED_POINTS = "CREATE TABLE IF NOT EXISTS " +
             TABLE_POINTS + "(" +
@@ -41,7 +42,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             WORK_TME + " TEXT ," +
             LATITUDE + " TEXT ," +
             LONGTITUDE + " TEXT ," +
-            PHONE + " TEXT " +
+            PHONE + " TEXT ," +
+            DESCRIPTION + " TEXT " +
             ");";
 
 
@@ -103,6 +105,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             int indexLatitude = cursor.getColumnIndex(LATITUDE);
             int indexLongtitude = cursor.getColumnIndex(LONGTITUDE);
             int indexPhone = cursor.getColumnIndex(PHONE);
+            int indexDescription = cursor.getColumnIndex(DESCRIPTION);
 
             do {
                 ReceptionPoint model = new ReceptionPoint();
@@ -115,6 +118,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 model.setLatitude(cursor.getString(indexLatitude));
                 model.setLongitude(cursor.getString(indexLongtitude));
                 model.setPhone(cursor.getString(indexPhone));
+                model.setDescription(cursor.getString(indexDescription));
 
                 list.add(model);
             } while (cursor.moveToNext());
