@@ -78,6 +78,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             cv.put(LATITUDE, model.getLatitude());
             cv.put(LONGTITUDE, model.getLongitude());
             cv.put(PHONE, model.getPhone());
+            cv.put(DESCRIPTION, model.getDescription());
             long rowsId = db.insert(TABLE_POINTS, null, cv);
             Log.d("saved vacancies", "rows" + rowsId + model.getId());
         }

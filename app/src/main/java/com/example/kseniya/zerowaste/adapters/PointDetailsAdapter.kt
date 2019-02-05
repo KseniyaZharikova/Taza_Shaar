@@ -44,7 +44,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint) : RecyclerView.
         holder.tvPhone.text = filterItems!!.phone
         holder.tvWorkTime.text = filterItems!!.work_time
         holder.tvPrice.text = filterItems!!.price
-        holder.viewPager.adapter = ImageAdapter(context, filterItems!!.images)
+      //  holder.viewPager.adapter = ImageAdapter(context, filterItems!!.images)
         holder.description.text = filterItems!!.description
     }
 
