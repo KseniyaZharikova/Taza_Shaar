@@ -1,6 +1,8 @@
 package com.example.kseniya.zerowaste.ui.fragments
+import android.arch.persistence.room.Transaction
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -85,10 +87,10 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
         // DishListActivity.new(this, points.id, cafe.title)
         val fragmentManager = fragmentManager
         val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.transition.enter_from_left,  R.transition.exit_to_right)
         fragmentTransaction.replace(R.id.container, InfoFragment.newInstance(point))
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
     }
 
     override fun onClick(v: View?) {

@@ -44,6 +44,7 @@ class InfoFragment : BaseFragment(), View.OnClickListener {
         item = arguments!!.getSerializable("item") as ReceptionPoint
         card_title.text = item!!.name
         back_arrow_button_info.setOnClickListener(this)
+        go_back.setOnClickListener(this)
         val lm = LinearLayoutManager(context)
         card_recyclerview.layoutManager = lm
         card_recyclerview.adapter = PointDetailsAdapter(item!!)

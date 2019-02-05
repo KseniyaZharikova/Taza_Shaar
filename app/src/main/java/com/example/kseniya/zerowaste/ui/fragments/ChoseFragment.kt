@@ -2,6 +2,7 @@ package com.example.kseniya.zerowaste.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.FragmentTransaction
 import android.view.View
 import com.example.kseniya.zerowaste.R
 import com.example.kseniya.zerowaste.interfaces.CheckBoxInterface
@@ -29,7 +30,6 @@ class ChoseFragment : BaseFragment(), View.OnClickListener {
     private fun switchFragment() {
         val fragmentManager = fragmentManager
         val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.transition.enter_from_left,  R.transition.exit_to_right)
         fragmentTransaction.replace(R.id.container, PointsInfoFragment())
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
