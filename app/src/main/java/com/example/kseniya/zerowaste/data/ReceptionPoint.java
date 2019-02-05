@@ -5,6 +5,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class ReceptionPoint implements Serializable {
@@ -20,12 +21,14 @@ public class ReceptionPoint implements Serializable {
     private String latitude;
     private String longitude;
     private String phone;
+    private String description;
+    private List<String> images = null;
 
-     public ReceptionPoint(){
+    public ReceptionPoint() {
 
     }
 
-    public ReceptionPoint (ReceptionPoint receptionPoint){
+    public ReceptionPoint(ReceptionPoint receptionPoint) {
         this.id = receptionPoint.getId();
         this.name = receptionPoint.getName();
         this.address = receptionPoint.getAddress();
@@ -35,6 +38,8 @@ public class ReceptionPoint implements Serializable {
         this.latitude = receptionPoint.getLatitude();
         this.longitude = receptionPoint.getLongitude();
         this.phone = receptionPoint.getPhone();
+        this.description = receptionPoint.getDescription();
+        this.images = receptionPoint.getImages();
 
     }
 
@@ -116,5 +121,21 @@ public class ReceptionPoint implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }
