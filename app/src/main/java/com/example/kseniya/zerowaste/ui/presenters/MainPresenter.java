@@ -6,6 +6,7 @@ import android.location.Location;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.kseniya.zerowaste.data.ReceptionPoint;
 import com.example.kseniya.zerowaste.data.db.SQLiteHelper;
@@ -72,11 +73,15 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
     public void getCurrentLocation(Activity activity) {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
         mFusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
+            if (location!= null){
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+                mainView.cameraUpdate(lat, lng);
+                mainView.showMyCurrentLocation(lat,lng);
+            }else {
+                Log.d(TAG, "getCurrentLocation: null");
+            }
 
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-	        mainView.cameraUpdate(lat, lng);
-	        mainView.showMyCurrentLocation(lat,lng);
         });
 
 
@@ -94,6 +99,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
                     ReceptionPoint point = postSnapshot.getValue(ReceptionPoint.class);
                     pointList.add(point);
                     Log.d(TAG, "onDataChange: " + pointList.size());
+                    Log.d(TAG, "onDataCjljlhange: " + pointList.get(0).getDescription());
                 }
                 saveMarkersToDb();
 
@@ -143,7 +149,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
         locationRequest.setInterval(INTERVAL_UPDATES);
         locationRequest.setFastestInterval(MINIMUM_INTERVAL_UPDATES);
         mFusedLocationProviderClient.requestLocationUpdates(locationRequest, mLocationCallback,
-                Looper.myLooper());
+              Looper.myLooper());
     }
 
     @Override
@@ -176,7 +182,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
             super.onLocationResult(locationResult);
             Location location = locationResult.getLastLocation();
 
-          //  mainView.cameraUpdate(location.getLatitude(), location.getLongitude());
+            //  mainView.cameraUpdate(location.getLatitude(), location.getLongitude());
             mainView.showMyCurrentLocation(location.getLatitude(), location.getLongitude());
             Log.d(TAG, "onLocationChanged: " + locationResult.getLastLocation().getLongitude() + " " + locationResult.getLastLocation().getLatitude());
         }

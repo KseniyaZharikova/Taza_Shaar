@@ -15,7 +15,7 @@ import com.example.kseniya.zerowaste.data.ReceptionPoint
 import com.example.kseniya.zerowaste.interfaces.CheckBoxInterface
 import com.example.kseniya.zerowaste.utils.Constants
 import kotlinx.android.synthetic.main.info_fragment.*
-
+import kotlinx.android.synthetic.main.item_points_info_details.*
 
 class InfoFragment : BaseFragment(), View.OnClickListener {
 
