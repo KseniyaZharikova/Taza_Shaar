@@ -17,9 +17,9 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="2dp"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
-        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
                 android:layout_marginLeft="@dimen/padding_items_points"
                 android:layout_marginTop="@dimen/padding_items_points"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="Салиева 145/1 (Буденого)"
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@id/loc_image"
@@ -83,7 +83,7 @@
                 android:layout_marginLeft="@dimen/padding_items_points"
                 android:layout_marginTop="@dimen/padding_items_points"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="0772 56 89 78"
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@id/phone_image"
@@ -106,7 +106,7 @@
                 android:layout_marginLeft="@dimen/padding_items_points"
                 android:layout_marginTop="@dimen/padding_items_points"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="9:00-18:00"
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@id/clock_image"
@@ -129,12 +129,36 @@
                 android:layout_marginLeft="@dimen/padding_items_points"
                 android:layout_marginTop="@dimen/padding_items_points"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="1кг-9 сом"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/wallet_image"
                 app:layout_constraintTop_toBottomOf="@id/tvWorkTime" />
+
+            <ImageView
+                android:id="@+id/info_descripton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/info"
+                app:layout_constraintBottom_toBottomOf="@id/tvDescription"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvDescription" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_items_points"
+                android:layout_marginLeft="@dimen/padding_items_points"
+                android:layout_marginTop="@dimen/padding_items_points"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="1кг-9 сом"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/info_descripton"
+                app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
 
         </android.support.constraint.ConstraintLayout>
