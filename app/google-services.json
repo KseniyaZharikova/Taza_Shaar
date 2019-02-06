@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "857207066852",
-    "firebase_url": "https://taza-shaar.firebaseio.com",
-    "project_id": "taza-shaar",
-    "storage_bucket": "taza-shaar.appspot.com"
+    "project_number": "461871148360",
+    "firebase_url": "https://tazashaar.firebaseio.com",
+    "project_id": "tazashaar",
+    "storage_bucket": "tazashaar.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:857207066852:android:61f3d691c9ef4644",
+        "mobilesdk_app_id": "1:461871148360:android:1e4bd686d4939d24",
         "android_client_info": {
-          "package_name": "com.example.kseniya.zerowaste"
+          "package_name": "com.tazashaar.kseniya.zerowaste"
         }
       },
       "oauth_client": [
         {
-          "client_id": "857207066852-8mvpdlm14ifenk8beuj7m61uf80jfu0o.apps.googleusercontent.com",
+          "client_id": "461871148360-tpn77m51fjg9h4rg9ls2m3947pqoilga.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC7EoU5e5cxmQhY17fNpehHmsxHHFQHBCs"
+          "current_key": "AIzaSyBS8b5sLnYV1BGz5OjaTfqOXn_g7FlxZn8"
         }
       ],
       "services": {

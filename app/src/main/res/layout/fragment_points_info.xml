@@ -8,11 +8,11 @@
     android:layout_height="wrap_content"
     tools:context=".ui.activities.MainActivity">
 
-    <com.example.kseniya.zerowaste.utils.nested_scroll_view.CustomNestedScrollView2
+    <com.tazashaar.kseniya.zerowaste.utils.nested_scroll_view.CustomNestedScrollView2
         android:id='@+id/nestedscrollview'
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.example.kseniya.zerowaste.utils.nested_scroll_view.CustomBehavior">
+        app:layout_behavior="com.tazashaar.kseniya.zerowaste.utils.nested_scroll_view.CustomBehavior">
 
         <FrameLayout
             android:id="@+id/card_container"
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.example.kseniya.zerowaste.utils.nested_scroll_view.MaxHeightRecyclerView
+                        <com.tazashaar.kseniya.zerowaste.utils.nested_scroll_view.MaxHeightRecyclerView
                             android:id="@+id/card_recyclerview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -92,7 +92,7 @@
 
         </FrameLayout>
 
-    </com.example.kseniya.zerowaste.utils.nested_scroll_view.CustomNestedScrollView2>
+    </com.tazashaar.kseniya.zerowaste.utils.nested_scroll_view.CustomNestedScrollView2>
 
 </android.support.design.widget.CoordinatorLayout>
 
