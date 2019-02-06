@@ -6,16 +6,13 @@ import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import com.example.kseniya.zerowaste.R
 import com.example.kseniya.zerowaste.adapters.PointDetailsAdapter
 import com.example.kseniya.zerowaste.data.ReceptionPoint
 import com.example.kseniya.zerowaste.interfaces.CheckBoxInterface
-import com.example.kseniya.zerowaste.utils.Constants
 import kotlinx.android.synthetic.main.info_fragment.*
-import kotlinx.android.synthetic.main.item_points_info_details.*
 
 class InfoFragment : BaseFragment(), View.OnClickListener {
 
@@ -39,6 +36,14 @@ class InfoFragment : BaseFragment(), View.OnClickListener {
 
     }
 
+    private fun parseStringImages(images: String): List<String> {
+        var list: List<String> = ArrayList()
+        if (images.isEmpty()) return list else {
+            list = images.split(",")
+        }
+        return list
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         item = arguments!!.getSerializable("item") as ReceptionPoint
@@ -47,7 +52,8 @@ class InfoFragment : BaseFragment(), View.OnClickListener {
         go_back.setOnClickListener(this)
         val lm = LinearLayoutManager(context)
         card_recyclerview.layoutManager = lm
-        card_recyclerview.adapter = PointDetailsAdapter(item!!)
+        parseStringImages(item!!.images)
+        card_recyclerview.adapter = PointDetailsAdapter(item!!, parseStringImages(item!!.images))
         card_recyclerview.addItemDecoration(DividerItemDecoration(context, 0))
 
         card_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {

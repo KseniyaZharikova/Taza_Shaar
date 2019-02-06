@@ -16,7 +16,7 @@ import java.util.List;
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "DB_VACANCIES";
-    private final static int DB_VERSION = 3;
+    private final static int DB_VERSION = 4;
 
     private final static String TABLE_POINTS = "TABLE_POINTS";
     private final static String ID = "_id";
@@ -30,6 +30,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private final static String LONGTITUDE = "LONGTITUDE";
     private final static String PHONE = "PHONE";
     private final static String DESCRIPTIONS = "DESCRIPTIONS";
+    private final static String IMAGES = "IMAGES";
 
     private final static String TABLE_CREATED_POINTS = "CREATE TABLE IF NOT EXISTS " +
             TABLE_POINTS + "(" +
@@ -43,7 +44,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             LATITUDE + " TEXT ," +
             LONGTITUDE + " TEXT ," +
             PHONE + " TEXT ," +
-            DESCRIPTIONS + " TEXT " +
+            DESCRIPTIONS + " TEXT ," +
+            IMAGES + " TEXT " +
             ");";
 
 
@@ -79,6 +81,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             cv.put(LONGTITUDE, model.getLongitude());
             cv.put(PHONE, model.getPhone());
             cv.put(DESCRIPTIONS, model.getDescription());
+            cv.put(IMAGES, model.getImages());
             long rowsId = db.insert(TABLE_POINTS, null, cv);
             Log.d("saved vacancies", "rows" + rowsId + model.getId());
         }
@@ -106,7 +109,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             int indexLatitude = cursor.getColumnIndex(LATITUDE);
             int indexLongtitude = cursor.getColumnIndex(LONGTITUDE);
             int indexPhone = cursor.getColumnIndex(PHONE);
-              int indexDescription = cursor.getColumnIndex(DESCRIPTIONS);
+            int indexDescription = cursor.getColumnIndex(DESCRIPTIONS);
+            int indexImages = cursor.getColumnIndex(IMAGES);
+
 
             do {
                 ReceptionPoint model = new ReceptionPoint();
@@ -119,7 +124,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 model.setLatitude(cursor.getString(indexLatitude));
                 model.setLongitude(cursor.getString(indexLongtitude));
                 model.setPhone(cursor.getString(indexPhone));
-                  model.setDescription(cursor.getString(indexDescription));
+                model.setDescription(cursor.getString(indexDescription));
+                model.setImages(cursor.getString(indexImages));
 
                 list.add(model);
             } while (cursor.moveToNext());
