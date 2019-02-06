@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.kseniya.zerowaste.R
 import com.example.kseniya.zerowaste.data.ReceptionPoint
-import com.stfalcon.frescoimageviewer.ImageViewer
 
 class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val imagesCollection: List<String>) : RecyclerView.Adapter<PointDetailsAdapter.MyViewHolder>() {
 
@@ -44,11 +43,6 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         holder.tvWorkTime.text = filterItems!!.work_time
         holder.tvPrice.text = filterItems!!.price
         holder.viewPager.adapter = ImageAdapter(context, imagesCollection)
-        holder.viewPager.setOnClickListener {
-            ImageViewer.Builder(context, imagesCollection)
-                    .setStartPosition(position)
-                    .show()
-        }
         holder.description.text = filterItems!!.description
     }
 
