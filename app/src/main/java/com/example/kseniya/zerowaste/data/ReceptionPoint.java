@@ -22,7 +22,7 @@ public class ReceptionPoint implements Serializable {
     private String longitude;
     private String phone;
     private String description;
-    private List<String> images = null;
+    private String images;
 
     public ReceptionPoint() {
 
@@ -131,11 +131,11 @@ public class ReceptionPoint implements Serializable {
         this.description = description;
     }
 
-    public List<String> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 }
