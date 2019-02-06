@@ -57,6 +57,8 @@ dependencies {
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'com.github.stfalcon:frescoimageviewer:0.5.0'
+    implementation 'com.facebook.fresco:fresco:1.12.1'
 }
 repositories {
     mavenCentral()

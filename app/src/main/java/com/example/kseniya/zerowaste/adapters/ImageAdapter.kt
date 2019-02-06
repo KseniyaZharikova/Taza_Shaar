@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.kseniya.zerowaste.R
 
 
@@ -23,14 +24,25 @@ class ImageAdapter(private val context: Context?, private val images: List<Strin
     }
 
     override fun getCount(): Int {
+        if (images.isEmpty())
+            return 1
         return images.size
+    }
+
+    private fun getLink(position: Int): String {
+        return if (images.isEmpty()) {
+            ""
+        } else {
+            images[position].trim()
+        }
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = mLayoutInflater!!.inflate(R.layout.pager_item, container, false)
         val imageView = view.findViewById<ImageView>(R.id.imageViewPoints)
         Glide.with(context!!)
-                .load(images[position])
+                .load(getLink(position))
+                .apply(RequestOptions().placeholder(R.drawable.image_placeholder).error(R.drawable.image_placeholder))
                 .into(imageView)
         container.addView(view)
 
