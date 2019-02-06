@@ -219,7 +219,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         int pos = mMarkerList.lastIndexOf(marker);
         if (pos > -1) {
             cameraUpdate(marker.getPosition().getLatitude(), marker.getPosition().getLongitude());
-           // showItemByClickMarker(mainPresenter.getCurrentPoint(pos));
+            showItemByClickMarker(mainPresenter.getCurrentPoint(pos));
         }
         return false;
     }
