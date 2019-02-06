@@ -1,11 +1,10 @@
 package com.example.kseniya.zerowaste.adapters
 
-import android.content.res.ColorStateList
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.kseniya.zerowaste.R
 import com.example.kseniya.zerowaste.data.ReceptionPoint
@@ -20,11 +19,13 @@ class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val
     }
 
     class MyViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
-        val tvName= v.findViewById<TextView>(R.id.tvName)
-        val tvAddress= v.findViewById<TextView>(R.id.tvAddress)
-        val tvPhone= v.findViewById<TextView>(R.id.tvPhone)
-        val tvWorkTime= v.findViewById<TextView>(R.id.tvWorkTime)
-        val tvPrice= v.findViewById<TextView>(R.id.tvPrice)
+        val tvName = v.findViewById<TextView>(R.id.tvName)
+        val tvAddress = v.findViewById<TextView>(R.id.tvAddress)
+        val tvPhone = v.findViewById<TextView>(R.id.tvPhone)
+        val tvWorkTime = v.findViewById<TextView>(R.id.tvWorkTime)
+        val tvPrice = v.findViewById<TextView>(R.id.tvPrice)
+        val tvInfo = v.findViewById<TextView>(R.id.tvDesc)
+        val imgInfo = v.findViewById<ImageView>(R.id.desc_image)
     }
 
 
@@ -41,7 +42,12 @@ class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val
         holder.tvPhone.text = item.phone
         holder.tvWorkTime.text = item.work_time
         holder.tvPrice.text = item.price
-        holder.itemView.setOnClickListener { viewInterface.onClickItem(position) }
+        holder.itemView.setOnClickListener {
+            viewInterface.onClickItem(position)
+        }
+
+        holder.imgInfo.visibility = View.GONE
+        holder.tvInfo.visibility = View.GONE
 
     }
 
