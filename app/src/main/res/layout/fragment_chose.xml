@@ -205,13 +205,13 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_margin="15dp"
-                        android:background="@drawable/skot_active"
+                        android:background="@drawable/metal_active"
                         android:button="@null"
                         android:gravity="center" />
                     <TextView
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="Отходы от скота"
+                        android:text="Металл"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content" />
 

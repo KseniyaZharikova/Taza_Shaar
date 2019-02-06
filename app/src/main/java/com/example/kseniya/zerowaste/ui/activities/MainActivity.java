@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import com.example.kseniya.zerowaste.R;
 import com.example.kseniya.zerowaste.ZeroWasteApp;
 import com.example.kseniya.zerowaste.data.ReceptionPoint;
@@ -166,7 +165,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
             CameraPosition position = new CameraPosition.Builder()
                   .target(new LatLng(lat-0.01, lng))
                   .bearing(0)
-                  .zoom(13).tilt(15).build();
+                  .zoom(10).tilt(11).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
 
 

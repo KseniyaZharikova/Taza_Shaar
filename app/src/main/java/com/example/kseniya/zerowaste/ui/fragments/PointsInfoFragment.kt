@@ -1,5 +1,4 @@
 package com.example.kseniya.zerowaste.ui.fragments
-import android.arch.persistence.room.Transaction
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
@@ -8,11 +7,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.example.kseniya.zerowaste.R
 import com.example.kseniya.zerowaste.interfaces.CheckBoxInterface
 import com.example.kseniya.zerowaste.interfaces.SortedList
@@ -35,7 +31,7 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
         card_recyclerview.layoutManager = lm
         if ( SortedList.list.size == 0){
             nestedscrollview.visibility = View.GONE
-            showAlert("Внимание", "В данной категории к сожалению нет пунктов приема")
+            showAlert(resources.getString(R.string.attention), resources.getString(R.string.noPoints))
         }else{
 
             val arrayTypes = resources.getStringArray(R.array.type_names)
@@ -48,8 +44,6 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
 
             card_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(rv: RecyclerView, dx: Int, dy: Int) {
-                    // Animate the shadow view in/out as the user scrolls so that it
-                    // looks like the RecyclerView is scrolling beneath the card header.
                     val isRecyclerViewScrolledToTop = lm.findFirstVisibleItemPosition() == 0 && lm.findViewByPosition(0)!!.top == 0
                     if (!isRecyclerViewScrolledToTop && !mIsShowingCardHeaderShadow) {
                         mIsShowingCardHeaderShadow = true
@@ -64,8 +58,6 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
             nestedscrollview.overScrollMode = View.OVER_SCROLL_NEVER
             nestedscrollview.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { nsv, scrollX, scrollY, oldScrollX, oldScrollY ->
                 if (scrollY == 0 && oldScrollY > 0) {
-                    // Reset the RecyclerView's scroll position each time the card
-                    // returns to its starting position.
                     card_recyclerview.scrollToPosition(0)
                     cardview.alpha = 1.0f
                     mIsShowingCardHeaderShadow = false
@@ -83,16 +75,17 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
                 .setDuration(100).interpolator = DecelerateInterpolator()
     }
 
-    fun showAlert(title: String, message: String) {
+    private fun showAlert(title: String, message: String) {
 
             AlertDialog.Builder(context!!)
                     .setTitle(title)
                     .setCancelable(false)
                     .setMessage(message)
-                    .setPositiveButton(resources.getString(R.string.ok), null)
+                    .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
+                        fragmentManager!!.popBackStack()
+                    }
                     .show()
     }
-
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -102,7 +95,6 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
     override fun onClickItem(position: Int) {
 
         val point = presenter.pointsForPosition(position)
-        // DishListActivity.new(this, points.id, cafe.title)
         val fragmentManager = fragmentManager
         val fragmentTransaction = fragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.container, InfoFragment.newInstance(point))
