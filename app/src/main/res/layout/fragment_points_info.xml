@@ -60,11 +60,9 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:paddingLeft="24dp"
-                                android:paddingTop="16dp"
-                                android:paddingRight="24dp"
-                                android:textSize="23sp"
-                                android:paddingBottom="16dp" />
+                                android:paddingTop="18dp"
+                                android:textSize="20sp"
+                                android:paddingBottom="18dp" />
 
 
                         </LinearLayout>
