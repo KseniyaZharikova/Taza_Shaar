@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TazaShaar</string>
+    <string name="noPoints">В данной категории нет пунктов приема</string>
+    <string name="ok">Закрыть</string>
     <string name="exit_notice">Для выхода \"Назад\" нажмите еще раз</string>
     <string name="close">Закрыть</string>
     <string name="title_no_internet">Для работы приложения необходимо подключение к интернету</string>

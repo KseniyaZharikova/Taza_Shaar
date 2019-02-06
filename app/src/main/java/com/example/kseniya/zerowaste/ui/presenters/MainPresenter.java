@@ -99,7 +99,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
                     ReceptionPoint point = postSnapshot.getValue(ReceptionPoint.class);
                     pointList.add(point);
                     Log.d(TAG, "onDataChange: " + pointList.size());
-                    Log.d(TAG, "onDataCjljlhange: " + pointList.get(0).getDescription());
+                    Log.d(TAG, "Datagetfromfirebase: " + pointList.get(0).getDescription());
                 }
                 saveMarkersToDb();
 
