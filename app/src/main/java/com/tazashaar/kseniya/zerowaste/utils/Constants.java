@@ -21,6 +21,7 @@ public class Constants {
     public static final double LNG_NE = 74.70884;
 
     public static  int HIGHT_OF_ACTIVITY = 0;
+    public static  int HIGHT_OF_LAYOUT_CHOOSE = 0;
     public static  boolean SCROLL = false;
 
     public static int PointsType(long type) {
