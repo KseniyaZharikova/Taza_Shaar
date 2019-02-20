@@ -92,10 +92,11 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         mapView.setStyleUrl(Style.MAPBOX_STREETS);
         mapView.onCreate(savedInstanceState);
     }
+
     public static Icon drawableToIcon(@NonNull Context context, @DrawableRes int id) {
         Drawable vectorDrawable = ResourcesCompat.getDrawable(context.getResources(), id, context.getTheme());
         Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
-              vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         vectorDrawable.draw(canvas);
@@ -107,8 +108,8 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     public void drawReceptionPoints(List<ReceptionPoint> pointFromDatabase) {
         for (int i = 0; i < pointFromDatabase.size(); i++) {
             Marker marker = map.addMarker(new MarkerOptions()
-                  .position(new LatLng(Double.parseDouble(pointFromDatabase.get(i).getLatitude()), Double.parseDouble(pointFromDatabase.get(i).getLongitude())))
-                  .icon( drawableToIcon(this,Constants.PointsType(pointFromDatabase.get(i).getType()))));
+                    .position(new LatLng(Double.parseDouble(pointFromDatabase.get(i).getLatitude()), Double.parseDouble(pointFromDatabase.get(i).getLongitude())))
+                    .icon(drawableToIcon(this, Constants.PointsType(pointFromDatabase.get(i).getType()))));
             mMarkerList.add(marker);
         }
     }
@@ -158,39 +159,40 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         if (map != null) {
             Log.d("Loca_cameraUpdate", String.valueOf(lat + " " + lng));
             CameraPosition position = new CameraPosition.Builder()
-                  .target(new LatLng(lat-0.01, lng))
-                  .bearing(0)
-                  .zoom(10).tilt(11).build();
+                    .target(new LatLng(lat - 0.01, lng))
+                    .bearing(0)
+                    .zoom(10).tilt(11).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
 
 
         }
     }
+
     public void cameraUpdateInfo(double lat, double lng) {
         if (map != null) {
             Log.d("Loca_cameraUpdate", String.valueOf(lat + " " + lng));
             CameraPosition position = new CameraPosition.Builder()
-                  .target(new LatLng(lat-0.002, lng))
-                  .bearing(0)
-                  .zoom(15).tilt(17).build();
+                    .target(new LatLng(lat - 0.002, lng))
+                    .bearing(0)
+                    .zoom(15).tilt(17).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
 
 
         }
     }
+
     @Override
     public void cameraUpdatePOintsInfo() {
         if (map != null) {
             CameraPosition position = new CameraPosition.Builder()
-                  .target(new LatLng(Constants.LAT-0.01, Constants.LNG))
-                  .bearing(0)
-                  .zoom(11).tilt(13).build();
+                    .target(new LatLng(Constants.LAT - 0.01, Constants.LNG))
+                    .bearing(0)
+                    .zoom(11).tilt(13).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
 
 
         }
     }
-
 
 
     public void showMyCurrentLocation(Double lat, Double lng) {
@@ -296,7 +298,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     public void getHeight() {
 
-        final ViewTreeObserver observer= mainActivityRelativeLayout.getViewTreeObserver();
+        final ViewTreeObserver observer = mainActivityRelativeLayout.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
