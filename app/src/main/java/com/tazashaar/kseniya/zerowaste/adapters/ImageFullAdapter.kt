@@ -1,7 +1,6 @@
 package com.tazashaar.kseniya.zerowaste.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
@@ -11,17 +10,13 @@ import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tazashaar.kseniya.zerowaste.R
-import com.tazashaar.kseniya.zerowaste.ui.activities.FullScreenImageActivity
+import com.tazashaar.kseniya.zerowaste.data.ReceptionPoint
+import kotlinx.android.synthetic.main.item_point_info.view.*
 import java.util.ArrayList
 
 
-class ImageAdapter(private val context: Context?, private val images: List<String>) : PagerAdapter(), View.OnClickListener {
-    override fun onClick(v: View?) {
-        val intent = Intent(context, FullScreenImageActivity::class.java)
-        intent.putStringArrayListExtra("images", images as ArrayList<String>?)
-        intent.putExtra("position", v!!.tag as Int)
-        context!!.startActivity(intent)
-    }
+class ImageFullAdapter(private val context: Context?, private val images: ArrayList<String>, private val pos: Int) : PagerAdapter() {
+
 
     private var mLayoutInflater: LayoutInflater? = null
 
@@ -48,13 +43,11 @@ class ImageAdapter(private val context: Context?, private val images: List<Strin
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val view = mLayoutInflater!!.inflate(R.layout.pager_item, container, false)
-        view.setOnClickListener(this)
-        val imageView = view.findViewById<ImageView>(R.id.imageViewPoints)
-        view.tag = position
+        val view = mLayoutInflater!!.inflate(R.layout.image_fullscreen_item, container, false)
+        val imageView = view.findViewById<ImageView>(R.id.imageFullScreen)
+
         Glide.with(context!!)
                 .load(getLink(position))
-
                 .apply(RequestOptions().placeholder(R.drawable.image_placeholder).error(R.drawable.image_placeholder))
                 .into(imageView)
         container.addView(view)

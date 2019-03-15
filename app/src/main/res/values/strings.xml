@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TazaShaar</string>
+    <string name="app_name">Tazar</string>
     <string name="noPoints">В данной категории к сожалению нет пунктов приема</string>
     <string name="ok">Закрыть</string>
     <string name="exit_notice">Для выхода \"Назад\" нажмите еще раз</string>
@@ -7,6 +7,7 @@
     <string name="attention">Внимание</string>
     <string name="title_no_internet">Для работы приложения необходимо подключение к интернету</string>
     <string name="descriptionSecond">Утилизация: Бумажные отходы Пластмасса Резиновые отходы. Наличный расчёт. Оплата через банк.</string>
+    <string name="call_title">Выберите телефон:</string>
     <string-array name="type_names">
         <item>пластика</item>
         <item>стекла</item>
@@ -18,4 +19,9 @@
         <item>техники</item>
     </string-array>
     <string name="description">Переработка мусора является всемирно известным способом защиты окружающей среды. Смысл утилизации заключается в защите природных ресурсов, минимизации их потребления. Не менее важным является снижение объема отходов. Это означает потребность осуществлять активную переработку отходов для повторного использования. Каждый год есть многочисленные действия, направленные на то, чтобы изменить отношение производителей и потребителей к природе. К ним относятся действия, которые стимулируют сортировку отходов. Осведомленность о возможности переработки продукта поощряет подобные действия, и, таким образом, помогает защитить окружающую среду.</string>
+
+    <string name="title_activity_image_full_screen">ImageFullScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

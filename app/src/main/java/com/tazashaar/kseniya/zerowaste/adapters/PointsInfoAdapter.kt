@@ -1,5 +1,6 @@
 package com.tazashaar.kseniya.zerowaste.adapters
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,12 @@ import android.widget.TextView
 import com.tazashaar.kseniya.zerowaste.R
 import com.tazashaar.kseniya.zerowaste.data.ReceptionPoint
 import com.tazashaar.kseniya.zerowaste.interfaces.SortedList
+import com.tazashaar.kseniya.zerowaste.utils.CallAlertDialog
 
 class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val viewInterface: SortedList) : RecyclerView.Adapter<PointsInfoAdapter.MyViewHolder>() {
 
     var filterItems: List<ReceptionPoint> = ArrayList()
+    private lateinit var context: Context
 
     init {
         filterItems = myDataset
@@ -30,6 +33,7 @@ class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        context = parent.context
         return MyViewHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_point_info, parent, false))
     }
@@ -45,6 +49,7 @@ class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val
         holder.itemView.setOnClickListener {
             viewInterface.onClickItem(position)
         }
+        holder.tvPhone.setOnClickListener { CallAlertDialog.getCall(context, item.phone) }
 
         holder.imgInfo.visibility = View.GONE
         holder.tvInfo.visibility = View.GONE

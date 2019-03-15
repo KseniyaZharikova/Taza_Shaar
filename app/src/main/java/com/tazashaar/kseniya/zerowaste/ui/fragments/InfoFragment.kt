@@ -14,6 +14,8 @@ import com.tazashaar.kseniya.zerowaste.data.ReceptionPoint
 import com.tazashaar.kseniya.zerowaste.interfaces.CheckBoxInterface
 import kotlinx.android.synthetic.main.info_fragment.*
 
+
+
 class InfoFragment : BaseFragment(), View.OnClickListener {
 
     var mCallBack: CheckBoxInterface? = null
@@ -48,8 +50,11 @@ class InfoFragment : BaseFragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         item = arguments!!.getSerializable("item") as ReceptionPoint
         card_title.text = item!!.name
+
         back_arrow_button_info.setOnClickListener(this)
         go_back.setOnClickListener(this)
+
+
         val lm = LinearLayoutManager(context)
         card_recyclerview.layoutManager = lm
         parseStringImages(item!!.images)
