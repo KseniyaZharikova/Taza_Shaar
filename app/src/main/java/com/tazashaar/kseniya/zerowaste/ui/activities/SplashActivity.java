@@ -35,6 +35,8 @@ public class SplashActivity extends BaseActivity implements MainInterface.View {
 
         final Animation animationRotateCenter = AnimationUtils.loadAnimation(
                 this, R.anim.rotation);
+
+        animationRotateCenter.setRepeatCount(Animation.INFINITE);
         splashLogo.startAnimation(animationRotateCenter);
 
         mainPresenter = new MainPresenter(ZeroWasteApp.get(this).getSqLiteHelper());
