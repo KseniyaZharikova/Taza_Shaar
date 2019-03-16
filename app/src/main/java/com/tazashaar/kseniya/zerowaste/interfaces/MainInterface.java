@@ -1,6 +1,7 @@
 package com.tazashaar.kseniya.zerowaste.interfaces;
 
 import android.app.Activity;
+import android.widget.ImageView;
 
 import com.tazashaar.kseniya.zerowaste.data.ReceptionPoint;
 
