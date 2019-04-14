@@ -56,9 +56,6 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     private Marker marker;
     private List<Marker> mMarkerList = new ArrayList<>();
 
-    private LatLng locationOne;
-    private LatLng locationTwo;
-
     @BindView(R.id.mapView)
     MapView mapView;
 
