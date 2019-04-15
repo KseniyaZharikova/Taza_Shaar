@@ -72,15 +72,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         for (int i = 0; i < list.size(); i++) {
             ReceptionPoint model = list.get(i);
             cv.put(ID_POINTS, model.getId());
-            cv.put(NAME, model.getName());
-            cv.put(ADDRESS, model.getAddress());
+            cv.put(NAME, model.getName().replaceAll("\\s+", " "));
+            cv.put(ADDRESS, model.getAddress().replaceAll("\\s+", " "));
             cv.put(TYPE, model.getType());
-            cv.put(PRICE, model.getPrice());
-            cv.put(WORK_TME, model.getWork_time());
+            cv.put(PRICE, model.getPrice().replaceAll("\\s+", " "));
+            cv.put(WORK_TME, model.getWork_time().replaceAll("\\s+", " "));
             cv.put(LATITUDE, model.getLatitude());
             cv.put(LONGTITUDE, model.getLongitude());
-            cv.put(PHONE, model.getPhone());
-            cv.put(DESCRIPTIONS, model.getDescription());
+            cv.put(PHONE, model.getPhone().replaceAll("\\s+", " "));
+            cv.put(DESCRIPTIONS, model.getDescription().replaceAll("\\s+", " "));
             cv.put(IMAGES, model.getImages());
             long rowsId = db.insert(TABLE_POINTS, null, cv);
             Log.d("saved vacancies", "rows" + rowsId + model.getId());

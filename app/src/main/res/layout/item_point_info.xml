@@ -63,9 +63,7 @@
                     android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Салиева 145/1 (Буденого)"
-                    android:textSize="16dp" />
+                    style="@style/textItemsStyle" />
 
             </LinearLayout>
 
@@ -91,9 +89,7 @@
                     android:id="@+id/tvPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="0772 56 89 78"
-                    android:textSize="16dp" />
+                    style="@style/textItemsStyle" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,10 +111,7 @@
                     android:id="@+id/tvWorkTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="right"
-                    android:text="9:00-18:00"
-                    android:textSize="16dp" />
+                    style="@style/textItemsStyle" />
 
             </LinearLayout>
 
@@ -138,12 +131,11 @@
                     android:src="@drawable/wallet" />
 
                 <TextView
+
                     android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="16dp"/>
+                    style="@style/textItemsStyle" />
 
             </LinearLayout>
 
@@ -166,9 +158,7 @@
                     android:id="@+id/tvDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="16dp" />
+                    style="@style/textItemsStyle" />
 
             </LinearLayout>
 
