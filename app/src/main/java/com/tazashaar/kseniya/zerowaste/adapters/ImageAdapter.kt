@@ -15,10 +15,14 @@ import com.tazashaar.kseniya.zerowaste.ui.activities.FullScreenImageActivity
 import java.util.ArrayList
 
 
+
+
+
 class ImageAdapter(private val context: Context?, private val images: List<String>) : PagerAdapter(), View.OnClickListener {
     override fun onClick(v: View?) {
         val intent = Intent(context, FullScreenImageActivity::class.java)
-        intent.putStringArrayListExtra("images", images as ArrayList<String>?)
+        val usersArrayList = ArrayList<String>(images)
+        intent.putStringArrayListExtra("images", usersArrayList)
         intent.putExtra("position", v!!.tag as Int)
         context!!.startActivity(intent)
     }
@@ -34,8 +38,8 @@ class ImageAdapter(private val context: Context?, private val images: List<Strin
     }
 
     override fun getCount(): Int {
-        if (images.isEmpty())
-            return 1
+        //if (images.isEmpty())
+          //  return 1
         return images.size
     }
 
