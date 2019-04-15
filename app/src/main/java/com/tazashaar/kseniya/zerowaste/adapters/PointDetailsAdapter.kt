@@ -27,6 +27,14 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
     }
 
 
+    //TODO
+    private fun isImageHasOne() {
+        if (imagesCollection.size <= 1) {
+            imageViewLeft.visibility = View.GONE
+            imageViewRight.visibility = View.GONE
+        }
+    }
+
     override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
     override fun onPageScrollStateChanged(p0: Int) {}
 
@@ -49,6 +57,11 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
                 imageViewRight.visibility = View.VISIBLE
             }
         }
+
+        imageViewLeft.visibility = View.GONE
+        imageViewRight.visibility = View.GONE
+
+
     }
 
     class MyViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
@@ -90,6 +103,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         }
 
         holder.tvPhone.setOnClickListener { CallAlertDialog.getCall(context!!, filterItems!!.phone) }
+        isImageHasOne()
     }
 
     private fun call() {}
