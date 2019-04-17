@@ -16,7 +16,7 @@ import java.util.List;
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "DB_VACANCIES";
-    private final static int DB_VERSION = 4;
+    private final static int DB_VERSION = 5;
 
     private final static String TABLE_POINTS = "TABLE_POINTS";
     private final static String ID = "_id";
@@ -31,6 +31,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private final static String PHONE = "PHONE";
     private final static String DESCRIPTIONS = "DESCRIPTIONS";
     private final static String IMAGES = "IMAGES";
+    private final static String DEPARTURE = "DEPARTURE";
 
     private final static String TABLE_CREATED_POINTS = "CREATE TABLE IF NOT EXISTS " +
             TABLE_POINTS + "(" +
@@ -44,6 +45,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             LATITUDE + " TEXT ," +
             LONGTITUDE + " TEXT ," +
             PHONE + " TEXT ," +
+            DEPARTURE + " TEXT ," +
             DESCRIPTIONS + " TEXT ," +
             IMAGES + " TEXT " +
             ");";
@@ -82,6 +84,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             cv.put(PHONE, model.getPhone().replaceAll("\\s+", " "));
             cv.put(DESCRIPTIONS, model.getDescription().replaceAll("\\s+", " "));
             cv.put(IMAGES, model.getImages());
+            cv.put(DEPARTURE, model.getDeparture());
             long rowsId = db.insert(TABLE_POINTS, null, cv);
             Log.d("saved vacancies", "rows" + rowsId + model.getId());
         }
@@ -111,6 +114,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             int indexPhone = cursor.getColumnIndex(PHONE);
             int indexDescription = cursor.getColumnIndex(DESCRIPTIONS);
             int indexImages = cursor.getColumnIndex(IMAGES);
+            int indexDeparture = cursor.getColumnIndex(DEPARTURE);
 
 
             do {
@@ -126,6 +130,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 model.setPhone(cursor.getString(indexPhone));
                 model.setDescription(cursor.getString(indexDescription));
                 model.setImages(cursor.getString(indexImages));
+                model.setDeparture(cursor.getString(indexDeparture));
 
                 list.add(model);
             } while (cursor.moveToNext());

@@ -19,15 +19,6 @@
             android:orientation="vertical"
             android:visibility="visible">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -37,7 +28,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
-            </android.support.v7.widget.CardView>
+
 <android.support.v4.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
