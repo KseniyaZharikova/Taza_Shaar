@@ -27,7 +27,6 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
     }
 
 
-    //TODO
     private fun isImageHasOne() {
         if (imagesCollection.size <= 1) {
             imageViewLeft.visibility = View.GONE
@@ -58,8 +57,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
             }
         }
 
-        imageViewLeft.visibility = View.GONE
-        imageViewRight.visibility = View.GONE
+
 
 
     }
