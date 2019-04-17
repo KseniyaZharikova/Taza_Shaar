@@ -28,6 +28,7 @@ class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val
         val tvWorkTime = v.findViewById<TextView>(R.id.tvWorkTime)
         val tvPrice = v.findViewById<TextView>(R.id.tvPrice)
         val tvInfo = v.findViewById<TextView>(R.id.tvDesc)
+        val departure = v.findViewById<TextView>(R.id.tv_truck)
         val imgInfo = v.findViewById<ImageView>(R.id.desc_image)
     }
 
@@ -46,6 +47,7 @@ class PointsInfoAdapter(private val myDataset: List<ReceptionPoint>, private val
         holder.tvPhone.text = item.phone
         holder.tvWorkTime.text = item.work_time
         holder.tvPrice.text = item.price
+        holder.departure.text = "Выезд: " + item.departure
         holder.itemView.setOnClickListener {
             viewInterface.onClickItem(position)
         }

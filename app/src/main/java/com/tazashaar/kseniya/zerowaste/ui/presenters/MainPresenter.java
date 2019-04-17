@@ -61,6 +61,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
             downloadMarkers();
         } else if (db.getReceptionPoints().size() != 0) {
             mainView.startActivity();
+
         } else {
             mainView.dialogNoInternet();
         }

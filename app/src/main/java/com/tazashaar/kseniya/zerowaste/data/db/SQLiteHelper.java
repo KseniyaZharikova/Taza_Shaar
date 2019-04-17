@@ -84,7 +84,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             cv.put(PHONE, model.getPhone().replaceAll("\\s+", " "));
             cv.put(DESCRIPTIONS, model.getDescription().replaceAll("\\s+", " "));
             cv.put(IMAGES, model.getImages());
-            cv.put(DEPARTURE, model.getDeparture());
+            cv.put(DEPARTURE, model.getDeparture().replaceAll("\\s+", " "));
             long rowsId = db.insert(TABLE_POINTS, null, cv);
             Log.d("saved vacancies", "rows" + rowsId + model.getId());
         }

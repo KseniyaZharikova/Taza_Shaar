@@ -89,7 +89,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         holder.tvPhone.text = filterItems!!.phone
         holder.tvWorkTime.text = filterItems!!.work_time
         holder.tvPrice.text = filterItems!!.price
-        holder.truck.text = filterItems!!.departure
+        holder.truck.text = "Выезд: " +filterItems!!.departure
         holder.viewPager.adapter = ImageAdapter(context, imagesCollection)
         holder.tvInfo.text = filterItems!!.description
         holder.viewPager.currentItem
