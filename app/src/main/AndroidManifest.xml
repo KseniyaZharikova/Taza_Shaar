@@ -23,7 +23,6 @@
         <activity
             android:launchMode="singleTask"
             android:name=".ui.activities.FullScreenImageActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".ui.activities.SplashActivity"
