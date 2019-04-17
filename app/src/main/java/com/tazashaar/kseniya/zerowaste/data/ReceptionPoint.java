@@ -2,6 +2,7 @@ package com.tazashaar.kseniya.zerowaste.data;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.util.Log;
 
 
 import java.io.Serializable;
@@ -22,6 +23,7 @@ public class ReceptionPoint implements Serializable {
     private String phone;
     private String description;
     private String images;
+    private String departure;
 
     public ReceptionPoint() {
 
@@ -39,6 +41,7 @@ public class ReceptionPoint implements Serializable {
         this.phone = receptionPoint.getPhone();
         this.description = receptionPoint.getDescription();
         this.images = receptionPoint.getImages();
+        this.departure = receptionPoint.getDeparture();
 
     }
 
@@ -136,5 +139,14 @@ public class ReceptionPoint implements Serializable {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    public String getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(String departure) {
+
+        this.departure = departure;
     }
 }

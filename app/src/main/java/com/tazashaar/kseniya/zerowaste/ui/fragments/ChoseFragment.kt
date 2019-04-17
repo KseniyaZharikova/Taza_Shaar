@@ -39,7 +39,7 @@ class ChoseFragment : BaseFragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        card_view.setBackgroundResource(R.drawable.shape_main_view)
+        expandedView.setBackgroundResource(R.drawable.shape_main_view)
         initCheckbox()
         mCallBack!!.showAllPoints()
 //        getHeight(view)

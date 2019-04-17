@@ -74,6 +74,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         val tvInfo: TextView = v.findViewById(R.id.tvDesc)
         val imgPrev: ImageView = v.findViewById(R.id.imgPrev)
         val imgNext: ImageView = v.findViewById(R.id.imgNext)
+        val truck: TextView = v.findViewById(R.id.tv_truck)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PointDetailsAdapter.MyViewHolder {
@@ -90,6 +91,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         holder.tvPhone.text = filterItems!!.phone
         holder.tvWorkTime.text = filterItems!!.work_time
         holder.tvPrice.text = filterItems!!.price
+        holder.truck.text = filterItems!!.departure
         holder.viewPager.adapter = ImageAdapter(context, imagesCollection)
         holder.tvInfo.text = filterItems!!.description
         holder.viewPager.currentItem
