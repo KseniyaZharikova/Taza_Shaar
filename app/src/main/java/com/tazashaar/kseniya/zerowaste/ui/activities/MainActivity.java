@@ -53,7 +53,6 @@ import static com.tazashaar.kseniya.zerowaste.BuildConfig.MAP_BOX_KEY;
 
 public class MainActivity extends BaseActivity implements OnMapReadyCallback, View.OnClickListener, MainInterface.View, CheckBoxInterface, MapboxMap.OnMarkerClickListener {
 
-    private final String TAG = getClass().getSimpleName();
     private MainInterface.Presenter mainPresenter;
     private MapboxMap map;
     private Marker marker;
@@ -119,7 +118,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         for (int i = 0; i < mMarkerList.size(); i++) {
             map.removeMarker(mMarkerList.get(i));
         }
-        Log.d(TAG, "showFilteredReceptionPoints11: " + map.getMarkers().size());
+
         mMarkerList.clear();
         drawReceptionPoints(list);
     }

@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_chose.*
 
 
 class ChoseFragment : BaseFragment(), View.OnClickListener {
-    var activity: MainActivity? = null
     private var mCallBack: CheckBoxInterface? = null
 
     override fun getViewLayout(): Int {
@@ -43,7 +42,7 @@ class ChoseFragment : BaseFragment(), View.OnClickListener {
         initCheckbox()
         mCallBack!!.showAllPoints()
 //        getHeight(view)
-        SortedList.list.clear()
+        //SortedList.list.clear()
     }
 //    private fun getHeight(view: View) {
 //
