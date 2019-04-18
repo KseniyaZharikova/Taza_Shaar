@@ -2,8 +2,6 @@ package com.tazashaar.kseniya.zerowaste.data;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.util.Log;
-
 
 import java.io.Serializable;
 

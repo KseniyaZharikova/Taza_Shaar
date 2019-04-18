@@ -2,14 +2,9 @@ package com.tazashaar.kseniya.zerowaste.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.tazashaar.kseniya.zerowaste.R
 import com.tazashaar.kseniya.zerowaste.interfaces.CheckBoxInterface
-import com.tazashaar.kseniya.zerowaste.interfaces.SortedList
-import com.tazashaar.kseniya.zerowaste.ui.activities.MainActivity
-import com.tazashaar.kseniya.zerowaste.utils.Constants
-
 import kotlinx.android.synthetic.main.fragment_chose.*
 
 

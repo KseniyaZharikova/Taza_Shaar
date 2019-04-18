@@ -108,7 +108,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.d(TAG, "onCancelled: ");
             }
         });
     }

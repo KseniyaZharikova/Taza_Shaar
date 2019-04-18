@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -15,19 +13,8 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import com.tazashaar.kseniya.zerowaste.R;
-import com.tazashaar.kseniya.zerowaste.ZeroWasteApp;
-import com.tazashaar.kseniya.zerowaste.data.ReceptionPoint;
-import com.tazashaar.kseniya.zerowaste.interfaces.CheckBoxInterface;
-import com.tazashaar.kseniya.zerowaste.interfaces.MainInterface;
-import com.tazashaar.kseniya.zerowaste.interfaces.SortedList;
-import com.tazashaar.kseniya.zerowaste.ui.fragments.ChoseFragment;
-import com.tazashaar.kseniya.zerowaste.ui.presenters.MainPresenter;
-import com.tazashaar.kseniya.zerowaste.utils.Constants;
-import com.tazashaar.kseniya.zerowaste.utils.PermissionUtils;
 
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Icon;
@@ -41,6 +28,16 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.tazashaar.kseniya.zerowaste.R;
+import com.tazashaar.kseniya.zerowaste.ZeroWasteApp;
+import com.tazashaar.kseniya.zerowaste.data.ReceptionPoint;
+import com.tazashaar.kseniya.zerowaste.interfaces.CheckBoxInterface;
+import com.tazashaar.kseniya.zerowaste.interfaces.MainInterface;
+import com.tazashaar.kseniya.zerowaste.interfaces.SortedList;
+import com.tazashaar.kseniya.zerowaste.ui.fragments.ChoseFragment;
+import com.tazashaar.kseniya.zerowaste.ui.presenters.MainPresenter;
+import com.tazashaar.kseniya.zerowaste.utils.Constants;
+import com.tazashaar.kseniya.zerowaste.utils.PermissionUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +53,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     private MainInterface.Presenter mainPresenter;
     private MapboxMap map;
     private Marker marker;
-    private List<Marker> mMarkerList = new ArrayList<>();
+    private List<Marker> mMarkerList;
 
     @BindView(R.id.mapView)
     MapView mapView;
@@ -162,8 +159,6 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
                     .bearing(0)
                     .zoom(10).tilt(11).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
-
-
         }
     }
 
@@ -243,6 +238,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        mMarkerList = new ArrayList<>();
     }
 
     @Override
