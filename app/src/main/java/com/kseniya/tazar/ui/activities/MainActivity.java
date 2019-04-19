@@ -43,6 +43,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -91,7 +92,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     public static Icon drawableToIcon(@NonNull Context context, @DrawableRes int id) {
         Drawable vectorDrawable = ResourcesCompat.getDrawable(context.getResources(), id, context.getTheme());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
+        Bitmap bitmap = Bitmap.createBitmap(Objects.requireNonNull(vectorDrawable).getIntrinsicWidth(),
                 vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -112,12 +113,15 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     @Override
     public void clearAllMarkersAndDrawNew(List<ReceptionPoint> list) {
-        for (int i = 0; i < mMarkerList.size(); i++) {
-            map.removeMarker(mMarkerList.get(i));
+        if (mMarkerList != null) {
+            for (int i = 0; i < mMarkerList.size(); i++) {
+                map.removeMarker(mMarkerList.get(i));
+
+            }
+            drawReceptionPoints(list);
         }
 
-        mMarkerList.clear();
-        drawReceptionPoints(list);
+
     }
 
 
@@ -164,7 +168,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     public void cameraUpdateInfo(double lat, double lng) {
         if (map != null) {
-            Log.d("Loca_cameraUpdate", String.valueOf(lat + " " + lng));
+            Log.d("Loca_cameraUpdate", lat + " " + lng);
             CameraPosition position = new CameraPosition.Builder()
                     .target(new LatLng(lat - 0.002, lng))
                     .bearing(0)
@@ -190,7 +194,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
 
     public void showMyCurrentLocation(Double lat, Double lng) {
-        Log.d("Loca_showMarkers", String.valueOf(lat + " " + lng));
+        Log.d("Loca_showMarkers", lat + " " + lng);
         if (marker != null)
             map.removeMarker(marker);
         if (PermissionUtils.Companion.isLocationEnable(this) && map != null) {
@@ -294,13 +298,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     public void getHeight() {
 
         final ViewTreeObserver observer = mainActivityRelativeLayout.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-                Constants.HIGHT_OF_ACTIVITY = mainActivityRelativeLayout.getHeight();
-            }
-        });
+        observer.addOnGlobalLayoutListener(() -> Constants.HIGHT_OF_ACTIVITY = mainActivityRelativeLayout.getHeight());
 
     }
 
