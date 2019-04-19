@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:461871148360:android:1e4bd686d4939d24",
+        "mobilesdk_app_id": "1:461871148360:android:1f7f05366cc3293f",
         "android_client_info": {
           "package_name": "com.kseniya.tazar"
         }
@@ -25,15 +25,20 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461871148360-tpn77m51fjg9h4rg9ls2m3947pqoilga.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "461871148360-9jnkntagn8itkub52pc1f7hbrocpdru7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tazashaar.prod"
+              }
+            }
+          ]
         }
       }
     }

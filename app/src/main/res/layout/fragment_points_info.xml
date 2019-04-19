@@ -12,7 +12,7 @@
         android:id='@+id/nestedscrollview'
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.tazashaar.kseniya.zerowaste.utils.nested_scroll_view.CustomBehavior">
+        app:layout_behavior="com.kseniya.tazar.utils.nested_scroll_view.CustomBehavior">
 
         <FrameLayout
             android:id="@+id/card_container"
