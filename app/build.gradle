@@ -16,10 +16,10 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.tazashaar.kseniya.zerowaste"
+        applicationId "com.kseniya.tazar"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 3
+        versionCode 5
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -60,8 +60,6 @@ dependencies {
     kapt "com.android.databinding:compiler:3.1.4"
     implementation 'com.google.firebase:firebase-database:16.0.5'
     implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'

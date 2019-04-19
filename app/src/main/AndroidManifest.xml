@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tazashaar.kseniya.zerowaste">
+    package="com.kseniya.tazar">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name=".ZeroWasteApp"
+        android:name="com.kseniya.tazar.ZeroWasteApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -18,14 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name="com.kseniya.tazar.ui.activities.MainActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.activities.FullScreenImageActivity"
+            android:name="com.kseniya.tazar.ui.activities.FullScreenImageActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
-            android:name=".ui.activities.SplashActivity"
+            android:name="com.kseniya.tazar.ui.activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
