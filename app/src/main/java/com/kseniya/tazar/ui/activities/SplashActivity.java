@@ -16,6 +16,7 @@ import com.kseniya.tazar.ui.presenters.MainPresenter;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class SplashActivity extends BaseActivity implements MainInterface.View {
@@ -24,15 +25,13 @@ public class SplashActivity extends BaseActivity implements MainInterface.View {
 
     @BindView(R.id.splash_logo)
     ImageView splashLogo;
-    @Override
-    protected int getViewLayout() {
-        return R.layout.activity_splash;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
         final Animation animationRotateCenter = AnimationUtils.loadAnimation(
                 this, R.anim.rotation);
 
@@ -56,7 +55,7 @@ public class SplashActivity extends BaseActivity implements MainInterface.View {
             startActivity(new Intent(this, MainActivity.class));
             finish();
 
-        },2000);
+        }, 2000);
 
     }
 
@@ -71,10 +70,6 @@ public class SplashActivity extends BaseActivity implements MainInterface.View {
 
     }
 
-    @Override
-    public void showMyCurrentLocation(Double lat, Double lng) {
-
-    }
 
     @Override
     public void drawReceptionPoints(List<ReceptionPoint> pointFromDatabase) {

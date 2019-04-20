@@ -10,8 +10,6 @@ public interface MainInterface {
     interface View {
         void cameraUpdate(double lat, double lng);
 
-		void showMyCurrentLocation(Double lat, Double lng);
-
         void drawReceptionPoints(List<ReceptionPoint> pointFromDatabase);
 
         void clearAllMarkersAndDrawNew(List<ReceptionPoint> list);
@@ -26,15 +24,12 @@ public interface MainInterface {
 
         void downloadMarkers();
 
-        void getCurrentLocation(Activity activity);
-
         void checkNetwork(Activity activity);
 
         void getPermission(Activity activity);
 
         ReceptionPoint getCurrentPoint(int position);
 
-        void startLocationUpdates();
 
         void setCheckedPoints(int category);
 

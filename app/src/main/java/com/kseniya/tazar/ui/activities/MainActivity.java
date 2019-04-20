@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -15,19 +16,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Icon;
-import com.mapbox.mapboxsdk.annotations.IconFactory;
-import com.mapbox.mapboxsdk.annotations.Marker;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.constants.Style;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.kseniya.tazar.R;
 import com.kseniya.tazar.ZeroWasteApp;
 import com.kseniya.tazar.data.ReceptionPoint;
@@ -37,7 +27,28 @@ import com.kseniya.tazar.interfaces.SortedList;
 import com.kseniya.tazar.ui.fragments.ChoseFragment;
 import com.kseniya.tazar.ui.presenters.MainPresenter;
 import com.kseniya.tazar.utils.Constants;
-import com.kseniya.tazar.utils.PermissionUtils;
+
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Icon;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
+import com.mapbox.mapboxsdk.annotations.Marker;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.LocationComponentOptions;
+import com.mapbox.mapboxsdk.location.OnCameraTrackingChangedListener;
+import com.mapbox.mapboxsdk.location.OnLocationClickListener;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
+import com.mapbox.mapboxsdk.maps.MapView;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.Style;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -46,15 +57,18 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.kseniya.tazar.BuildConfig.MAP_BOX_KEY;
 
-public class MainActivity extends BaseActivity implements OnMapReadyCallback, View.OnClickListener, MainInterface.View, CheckBoxInterface, MapboxMap.OnMarkerClickListener {
+public class MainActivity extends BaseActivity implements OnMapReadyCallback, View.OnClickListener, MainInterface.View, CheckBoxInterface, MapboxMap.OnMarkerClickListener, PermissionsListener, OnLocationClickListener, OnCameraTrackingChangedListener {
 
     private MainInterface.Presenter mainPresenter;
     private MapboxMap map;
     private Marker marker;
     private List<Marker> mMarkerList;
+    private LocationComponent locationComponent;
+    PermissionsManager permissionsManager = new PermissionsManager(this);
 
     @BindView(R.id.mapView)
     MapView mapView;
@@ -67,27 +81,23 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
 
     @Override
-    protected int getViewLayout() {
-        return R.layout.activity_main;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Mapbox.getInstance(getApplicationContext(), MAP_BOX_KEY);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         mainPresenter = new MainPresenter(ZeroWasteApp.get(this).getSqLiteHelper());
         mainPresenter.bind(this);
-        initMap(savedInstanceState);
         mainPresenter.getPermission(this);
         myLocation.setVisibility(View.INVISIBLE);
         getHeight();
+        initMap(savedInstanceState);
     }
 
     private void initMap(Bundle savedInstanceState) {
-        Mapbox.getInstance(this, MAP_BOX_KEY);
-        mapView.getMapAsync(this);
-        mapView.setStyleUrl(Style.MAPBOX_STREETS);
         mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+
     }
 
     public static Icon drawableToIcon(@NonNull Context context, @DrawableRes int id) {
@@ -114,42 +124,96 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     @Override
     public void clearAllMarkersAndDrawNew(List<ReceptionPoint> list) {
         if (mMarkerList != null) {
+
             for (int i = 0; i < mMarkerList.size(); i++) {
                 map.removeMarker(mMarkerList.get(i));
-
             }
+            mMarkerList.clear();
+
             drawReceptionPoints(list);
         }
 
 
     }
 
+    @SuppressWarnings({"MissingPermission"})
+    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
+        // Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+
+            // Create and customize the LocationComponent's options
+            LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(this)
+                    .elevation(5)
+                    .accuracyAlpha(.6f)
+                    .build();
+
+            // Get an instance of the component
+            locationComponent = map.getLocationComponent();
+
+            LocationComponentActivationOptions locationComponentActivationOptions =
+                    LocationComponentActivationOptions.builder(this, loadedMapStyle)
+                            .locationComponentOptions(customLocationComponentOptions)
+                            .build();
+
+            // Activate with options
+            locationComponent.activateLocationComponent(locationComponentActivationOptions);
+
+            // Enable to make component visible
+            locationComponent.setLocationComponentEnabled(true);
+
+            // Set the component's camera mode
+            //locationComponent.setCameraMode(CameraMode/);
+
+            // Set the component's render mode
+            locationComponent.setRenderMode(RenderMode.COMPASS);
+
+            // Add the location icon click listener
+            locationComponent.addOnLocationClickListener(this);
+
+            // Add the camera tracking listener. Fires if the map camera is manually moved.
+           // locationComponent.addOnCameraTrackingChangedListener(this);
+
+        } else {
+            permissionsManager = new PermissionsManager(this);
+            permissionsManager.requestLocationPermissions(this);
+        }
+
+        cameraUpdate(Constants.LAT, Constants.LNG);
+
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == Constants.LOCATION_REQUEST_CODE) {
-            for (int result : grantResults) {
-                if (result == PackageManager.PERMISSION_GRANTED) {
-                    mainPresenter.getCurrentLocation(this);
-                    myLocation.setVisibility(View.VISIBLE);
-                }
-            }
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
+    @Override
+    public void onPermissionResult(boolean granted) {
+        if (granted) {
+            map.getStyle(this::enableLocationComponent);
+        } else {
+
+            finish();
         }
     }
 
     @Override
-    public void onMapReady(MapboxMap mapboxMap) {
-        MainActivity.this.map = mapboxMap;
+    public void onMapReady(@NotNull MapboxMap mapboxMap) {
+        map = mapboxMap;
+        mapboxMap.setStyle(Style.MAPBOX_STREETS, style -> {
+            enableLocationComponent(style);
+        });
+
         replaceFragment(new ChoseFragment());
-        map.setOnMarkerClickListener(this);
+       // map.setOnMarkerClickListener(this);
         myLocation.setOnClickListener(this);
         cameraUpdate(Constants.LAT, Constants.LNG);
-        if (PermissionUtils.Companion.isLocationEnable(this)) {
-            mainPresenter.startLocationUpdates();
-            myLocation.setVisibility(View.VISIBLE);
-        }
+
+//        if (PermissionUtils.Companion.isLocationEnable(this)) {
+//
+//            myLocation.setVisibility(View.VISIBLE);
+//        }
 
 
     }
@@ -157,7 +221,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     public void cameraUpdate(double lat, double lng) {
         if (map != null) {
-            Log.d("Loca_cameraUpdate", String.valueOf(lat + " " + lng));
+            Log.d("Loca_cameraUpdate", lat + " " + lng);
             CameraPosition position = new CameraPosition.Builder()
                     .target(new LatLng(lat - 0.01, lng))
                     .bearing(0)
@@ -183,7 +247,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     public void cameraUpdatePOintsInfo() {
         if (map != null) {
             CameraPosition position = new CameraPosition.Builder()
-                    .target(new LatLng(Constants.LAT - 0.01, Constants.LNG))
+                    .target(new LatLng(Constants.LAT - 0.01, Constants.LNG ))
                     .bearing(0)
                     .zoom(11).tilt(13).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
@@ -191,18 +255,6 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
         }
     }
-
-
-    public void showMyCurrentLocation(Double lat, Double lng) {
-        Log.d("Loca_showMarkers", lat + " " + lng);
-        if (marker != null)
-            map.removeMarker(marker);
-        if (PermissionUtils.Companion.isLocationEnable(this) && map != null) {
-            marker = map.addMarker(new MarkerOptions().position(new LatLng(lat, lng)));
-
-        }
-    }
-
 
     @Override
     public void onCheckBoxClicked(int tag) {
@@ -227,7 +279,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     @Override
     public void onClick(View v) {
-        mainPresenter.getCurrentLocation(this);
+
 
     }
 
@@ -308,4 +360,29 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     }
 
 
+    @Override
+    public void onExplanationNeeded(List<String> permissionsToExplain) {
+
+    }
+
+    @SuppressLint("MissingPermission")
+    @Override
+    public void onLocationComponentClick() {
+//        if (locationComponent.getLastKnownLocation() != null) {
+//            Toast.makeText(this, "asaSAS",
+//                    locationComponent.getLastKnownLocation().getLatitude(),
+//                    locationComponent.getLastKnownLocation().getLongitude()), Toast.LENGTH_LONG).
+//            show();
+//        }
+    }
+
+    @Override
+    public void onCameraTrackingDismissed() {
+
+    }
+
+    @Override
+    public void onCameraTrackingChanged(int currentMode) {
+
+    }
 }

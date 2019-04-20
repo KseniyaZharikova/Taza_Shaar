@@ -13,15 +13,9 @@ import com.kseniya.tazar.ui.fragments.InfoFragment
 
 
 abstract class BaseActivity : AppCompatActivity() {
-    protected abstract fun getViewLayout(): Int
+
     var destroyed = false
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getViewLayout())
-        ButterKnife.bind(this)
-    }
 
     protected fun replaceFragment(fragment: Fragment) {
         if (supportFragmentManager == null) return

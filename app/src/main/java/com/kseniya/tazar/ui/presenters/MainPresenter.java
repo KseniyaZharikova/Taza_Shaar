@@ -13,7 +13,7 @@ import com.kseniya.tazar.interfaces.MainInterface;
 import com.kseniya.tazar.interfaces.SortedList;
 import com.kseniya.tazar.utils.ConnectionUtils;
 import com.kseniya.tazar.utils.Constants;
-import com.kseniya.tazar.utils.PermissionUtils;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
@@ -50,9 +50,8 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
 
     @Override
     public void getPermission(Activity activity) {
-        if (PermissionUtils.Companion.isLocationEnable(activity)) {
-            getCurrentLocation(activity);
-        }
+//        if (PermissionUtils.Companion.isLocationEnable(activity)) {
+//        }
     }
 
     @Override
@@ -68,24 +67,6 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
     }
 
 
-    @SuppressLint("MissingPermission")
-    @Override
-    public void getCurrentLocation(Activity activity) {
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
-        mFusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
-            if (location!= null){
-                lat = location.getLatitude();
-                lng = location.getLongitude();
-                mainView.cameraUpdate(lat, lng);
-                mainView.showMyCurrentLocation(lat,lng);
-            }else {
-                Log.d(TAG, "getCurrentLocation: null");
-            }
-
-        });
-
-
-    }
 
     @Override
     public void downloadMarkers() {
@@ -137,20 +118,6 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
     }
 
 
-    @SuppressLint("MissingPermission")
-    public void startLocationUpdates() {
-
-        int INTERVAL_UPDATES = 5000;
-        int MINIMUM_INTERVAL_UPDATES = 1000;
-
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(INTERVAL_UPDATES);
-        locationRequest.setFastestInterval(MINIMUM_INTERVAL_UPDATES);
-        mFusedLocationProviderClient.requestLocationUpdates(locationRequest, mLocationCallback,
-              Looper.myLooper());
-    }
-
     @Override
     public void setCheckedPoints(int category) {
         List<ReceptionPoint> list = new ArrayList<>();
@@ -182,7 +149,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
             Location location = locationResult.getLastLocation();
 
             //  mainView.cameraUpdate(location.getLatitude(), location.getLongitude());
-            mainView.showMyCurrentLocation(location.getLatitude(), location.getLongitude());
+
             Log.d(TAG, "onLocationChanged: " + locationResult.getLastLocation().getLongitude() + " " + locationResult.getLastLocation().getLatitude());
         }
     };
