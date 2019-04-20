@@ -189,7 +189,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("Loca_onLocationChanged", String.valueOf(location.getLatitude() + " " + location.getLongitude()));
+        Log.d("Loca_onLocationChanged", location.getLatitude() + " " + location.getLongitude());
 
 
     }
