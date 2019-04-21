@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         mainPresenter.getPermission(this);
         myLocation.setVisibility(View.INVISIBLE);
         getHeight();
+        mMarkerList = new ArrayList<>();
         initMap(savedInstanceState);
     }
 
@@ -294,7 +295,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        mMarkerList = new ArrayList<>();
+
     }
 
     @Override
