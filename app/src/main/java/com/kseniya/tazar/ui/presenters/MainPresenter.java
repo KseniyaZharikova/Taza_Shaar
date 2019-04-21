@@ -120,6 +120,7 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
 //        mainView.clearAllMarkersAndDrawNew(list);
         SortedList.list.clear();
         SortedList.list.addAll(list);
+        mainView.clearAllMarkersAndDrawNew(list);
         Log.d(TAG, "setCheckedPoints: " + list.size());
     }
 
