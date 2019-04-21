@@ -151,6 +151,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
             // Get an instance of the component
             locationComponent = map.getLocationComponent();
+            myLocation.setVisibility(View.VISIBLE);
 
             LocationComponentActivationOptions locationComponentActivationOptions =
                     LocationComponentActivationOptions.builder(this, loadedMapStyle)
@@ -224,7 +225,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         if (map != null) {
             Log.d("Loca_cameraUpdate", lat + " " + lng);
             CameraPosition position = new CameraPosition.Builder()
-                    .target(new LatLng(lat - 0.01, lng))
+                    .target(new LatLng(lat - 0.05, lng))
                     .bearing(0)
                     .zoom(10).tilt(11).build();
             map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
@@ -280,7 +281,9 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 
     @Override
     public void onClick(View v) {
-
+        if (locationComponent.getLastKnownLocation() != null) {
+           cameraUpdateInfo(locationComponent.getLastKnownLocation().getLatitude(),locationComponent.getLastKnownLocation().getLongitude());
+        }
 
     }
 
@@ -376,6 +379,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
 //            show();
 //        }
     }
+
 
     @Override
     public void onCameraTrackingDismissed() {
