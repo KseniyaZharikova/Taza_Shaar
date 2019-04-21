@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.kseniya.tazar.R
 import java.util.ArrayList
@@ -46,6 +47,7 @@ class ImageFullAdapter(private val context: Context?, private val images: ArrayL
 
         Glide.with(context!!)
                 .load(getLink(position))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .apply(RequestOptions().placeholder(R.drawable.image_placeholder).error(R.drawable.image_placeholder))
                 .into(imageView)
         container.addView(view)
