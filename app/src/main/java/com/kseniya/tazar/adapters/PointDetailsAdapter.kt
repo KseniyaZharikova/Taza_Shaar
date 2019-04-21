@@ -58,8 +58,6 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         }
 
 
-
-
     }
 
     class MyViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
@@ -89,7 +87,7 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         holder.tvPhone.text = filterItems!!.phone
         holder.tvWorkTime.text = filterItems!!.work_time
         holder.tvPrice.text = filterItems!!.price
-        holder.truck.text = "Выезд: " +filterItems!!.departure
+        holder.truck.text = "Выезд: " + filterItems!!.departure
         holder.viewPager.adapter = ImageAdapter(context, imagesCollection)
         holder.tvInfo.text = filterItems!!.description
         holder.viewPager.currentItem
@@ -105,8 +103,6 @@ class PointDetailsAdapter(private val myDataset: ReceptionPoint, private val ima
         holder.tvPhone.setOnClickListener { CallAlertDialog.getCall(context!!, filterItems!!.phone) }
         isImageHasOne()
     }
-
-    private fun call() {}
 
     private fun prevImage(viewPager: ViewPager, holder: MyViewHolder) {
         val currentIndex = viewPager.currentItem

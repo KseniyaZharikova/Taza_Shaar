@@ -197,7 +197,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
             map.getStyle(this::enableLocationComponent);
         } else {
 
-            finish();
+            //finish();
         }
     }
 
