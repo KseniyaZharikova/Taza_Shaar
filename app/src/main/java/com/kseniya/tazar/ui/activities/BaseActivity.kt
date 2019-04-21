@@ -1,13 +1,11 @@
 package com.kseniya.tazar.ui.activities
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
-import com.kseniya.tazar.R
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.kseniya.tazar.R
 import com.kseniya.tazar.data.ReceptionPoint
 import com.kseniya.tazar.ui.fragments.InfoFragment
 

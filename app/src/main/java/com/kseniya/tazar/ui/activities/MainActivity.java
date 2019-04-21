@@ -114,6 +114,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     @Override
     public void drawReceptionPoints(List<ReceptionPoint> pointFromDatabase) {
         for (int i = 0; i < pointFromDatabase.size(); i++) {
+
             Marker marker = map.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.parseDouble(pointFromDatabase.get(i).getLatitude()), Double.parseDouble(pointFromDatabase.get(i).getLongitude())))
                     .icon(drawableToIcon(this, Constants.PointsType(pointFromDatabase.get(i).getType()))));
@@ -173,6 +174,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
             // Add the camera tracking listener. Fires if the map camera is manually moved.
            // locationComponent.addOnCameraTrackingChangedListener(this);
 
+
         } else {
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
@@ -201,9 +203,7 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
     @Override
     public void onMapReady(@NotNull MapboxMap mapboxMap) {
         map = mapboxMap;
-        mapboxMap.setStyle(Style.MAPBOX_STREETS, style -> {
-            enableLocationComponent(style);
-        });
+        mapboxMap.setStyle(Style.MAPBOX_STREETS, this::enableLocationComponent);
 
         replaceFragment(new ChoseFragment());
        // map.setOnMarkerClickListener(this);

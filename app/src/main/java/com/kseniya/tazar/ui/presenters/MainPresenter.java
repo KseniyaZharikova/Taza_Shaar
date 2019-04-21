@@ -1,30 +1,22 @@
 package com.kseniya.tazar.ui.presenters;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.location.Location;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.android.gms.location.LocationListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kseniya.tazar.data.ReceptionPoint;
 import com.kseniya.tazar.data.db.SQLiteHelper;
 import com.kseniya.tazar.interfaces.MainInterface;
 import com.kseniya.tazar.interfaces.SortedList;
 import com.kseniya.tazar.utils.ConnectionUtils;
 import com.kseniya.tazar.utils.Constants;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +25,7 @@ import static com.kseniya.tazar.BuildConfig.BASE_URL_FIREBASE;
 
 public class MainPresenter implements MainInterface.Presenter, LocationListener {
     private MainInterface.View mainView;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
-    private double lat = Constants.LAT;
-    private double lng = Constants.LNG;
+
     private SQLiteHelper db;
 
     private final String TAG = getClass().getSimpleName();
@@ -140,19 +130,6 @@ public class MainPresenter implements MainInterface.Presenter, LocationListener 
         Log.d(TAG, "getPointFromDatabase: ");
         return pointList = db.getReceptionPoints();
     }
-
-
-    private LocationCallback mLocationCallback = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            super.onLocationResult(locationResult);
-            Location location = locationResult.getLastLocation();
-
-            //  mainView.cameraUpdate(location.getLatitude(), location.getLongitude());
-
-            Log.d(TAG, "onLocationChanged: " + locationResult.getLastLocation().getLongitude() + " " + locationResult.getLastLocation().getLatitude());
-        }
-    };
 
     @Override
     public void onLocationChanged(Location location) {
