@@ -22,7 +22,7 @@ android {
         versionCode 5
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        vectorDrawables.useSupportLibrary = true
         buildConfigField "String", "BASE_URL_FIREBASE", "\"${base_url_firebase}\""
         buildConfigField "String", "MAP_BOX_KEY", "\"${map_box_key}\""
 

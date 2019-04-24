@@ -99,7 +99,7 @@ class PointsInfoFragment : BaseFragment(), View.OnClickListener, SortedList {
         val fragmentTransaction = fragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.container, InfoFragment.newInstance(point))
         fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        fragmentTransaction.commitAllowingStateLoss()
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
     }
 

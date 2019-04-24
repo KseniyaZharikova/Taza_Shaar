@@ -30,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity() {
             fragmentManager.popBackStack()
         fragmentTransaction.addToBackStack("markerInfo")
 
-        fragmentTransaction.commit()
+        fragmentTransaction.commitAllowingStateLoss()
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
 
 

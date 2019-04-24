@@ -16,6 +16,7 @@ class ChoseFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+
         switchFragment()
         val tag = v!!.tag as String?
         mCallBack!!.onCheckBoxClicked(tag!!.toInt())
@@ -27,7 +28,7 @@ class ChoseFragment : BaseFragment(), View.OnClickListener {
         val fragmentTransaction = fragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.container, PointsInfoFragment())
         fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        fragmentTransaction.commitAllowingStateLoss()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -85,14 +85,16 @@ public class MainActivity extends BaseActivity implements OnMapReadyCallback, Vi
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(getApplicationContext(), MAP_BOX_KEY);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
+        initMap(savedInstanceState);
         mainPresenter = new MainPresenter(ZeroWasteApp.get(this).getSqLiteHelper());
         mainPresenter.bind(this);
         mainPresenter.getPermission(this);
         myLocation.setVisibility(View.INVISIBLE);
         getHeight();
         mMarkerList = new ArrayList<>();
-        initMap(savedInstanceState);
+
     }
 
     private void initMap(Bundle savedInstanceState) {
